@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD MyBatis Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="wtc.carbon.mapper.DeviceInfoMapper">
+    <resultMap id="deviceInfo" type="wtc.carbon.entity.DeviceInfo">
+        <result property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="code" column="code"/>
+        <result property="manufactureDate" column="manufacture_date"/>
+        <result property="manufactureNumber" column="manufacture_number"/>
+        <result property="manufacturer" column="manufacturer"/>
+        <result property="deviceStatus" column="device_status"/>
+    </resultMap>
+    
+    <select id="getAllDeviceInfo" resultMap="deviceInfo">
+        SELECT * from device_info
+    </select>
+    
+
+</mapper>
