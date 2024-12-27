@@ -9,6 +9,12 @@ import java.util.List;
 public interface DeviceInfoMapper {
     List<DeviceInfo> getAllDeviceInfo();
 
+    DeviceInfo getDeviceInfoById(Integer id);
 
+    Integer saveDeviceInfo(DeviceInfo deviceInfo);
+
+    Integer updateDeviceInfo(DeviceInfo deviceInfo);
+
+    Integer deleteDeviceInfo(Integer id);
 
 }

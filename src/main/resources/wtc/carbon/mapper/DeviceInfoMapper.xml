@@ -14,6 +14,35 @@
     <select id="getAllDeviceInfo" resultMap="deviceInfo">
         SELECT * from device_info
     </select>
+
+    <select id="getDeviceInfoById" resultMap="deviceInfo">
+        select * from device_info where id = #{id}
+    </select>
+
+
+    <insert id="saveDeviceInfo">
+        INSERT into device_info
+        (name, code, manufacture_date, manufacture_number, manufacturer, device_status)
+        values
+            (#{name}, #{code}, #{manufactureDate}, #{manufactureNumber}, #{manufacturer}, #{deviceStatus})
+    </insert>
+
+    <update id="updateDeviceInfo">
+        update device_info
+        <set>
+            <if test="name != null">name = #{name}</if>
+            <if test="code != null">code = #{code}</if>
+            <if test="manufactureDate != null">manufacture_date = #{manufactureDate}</if>
+            <if test="manufactureNumber != null">manufacture_number = #{manufactureNumber}</if>
+            <if test="manufacturer != null">manufacturer = #{manufacturer}</if>
+            <if test="deviceStatus != null">device_status = #{deviceStatus}</if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteDeviceInfo">
+        delete from device_info where id = #{id}
+    </delete>
     
 
 </mapper>

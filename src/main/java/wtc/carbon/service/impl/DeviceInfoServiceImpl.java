@@ -19,4 +19,24 @@ public class DeviceInfoServiceImpl implements DeviceInfoService {
     public List<DeviceInfo> getAllDeviceInfo() {
         return deviceInfoMapper.getAllDeviceInfo();
     }
+
+    @Override
+    public DeviceInfo getDeviceInfoById(Integer id){
+        return deviceInfoMapper.getDeviceInfoById(id);
+    }
+
+    @Override
+    public boolean saveDeviceInfo(DeviceInfo deviceInfo) {
+        return deviceInfoMapper.saveDeviceInfo(deviceInfo) >= 1;
+    }
+
+    @Override
+    public boolean updateDeviceInfo(DeviceInfo deviceInfo) {
+        return deviceInfoMapper.updateDeviceInfo(deviceInfo) >= 1;
+    }
+
+    @Override
+    public boolean deleteDeviceInfoById(Integer id) {
+        return deviceInfoMapper.deleteDeviceInfo(id) >= 1;
+    }
 }
