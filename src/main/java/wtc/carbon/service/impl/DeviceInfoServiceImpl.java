@@ -6,6 +6,7 @@ import wtc.carbon.entity.DeviceInfo;
 import wtc.carbon.mapper.DeviceInfoMapper;
 import wtc.carbon.service.DeviceInfoService;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -38,5 +39,10 @@ public class DeviceInfoServiceImpl implements DeviceInfoService {
     @Override
     public boolean deleteDeviceInfoById(Integer id) {
         return deviceInfoMapper.deleteDeviceInfo(id) >= 1;
+    }
+
+    @Override
+    public List<DeviceInfo> searchDevices(String name, String code, String model, LocalDate startDate, LocalDate endDate, String batchNumber, String manufacturer, String status) {
+        return deviceInfoMapper.searchDevices(name, code, model, startDate, endDate, batchNumber, manufacturer, status);
     }
 }

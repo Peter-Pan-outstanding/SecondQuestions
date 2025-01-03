@@ -5,10 +5,12 @@
         <result property="id" column="id"/>
         <result property="name" column="name"/>
         <result property="code" column="code"/>
+        <result property="model" column="model"/>
         <result property="manufactureDate" column="manufacture_date"/>
         <result property="manufactureNumber" column="manufacture_number"/>
         <result property="manufacturer" column="manufacturer"/>
         <result property="deviceStatus" column="device_status"/>
+        <result property="note" column="note"/>
     </resultMap>
     
     <select id="getAllDeviceInfo" resultMap="deviceInfo">
@@ -22,20 +24,22 @@
 
     <insert id="saveDeviceInfo">
         INSERT into device_info
-        (name, code, manufacture_date, manufacture_number, manufacturer, device_status)
+        (name, code, model,manufacture_date, manufacture_number, manufacturer, device_status, note)
         values
-            (#{name}, #{code}, #{manufactureDate}, #{manufactureNumber}, #{manufacturer}, #{deviceStatus})
+            (#{name}, #{code}, #{model},#{manufactureDate}, #{manufactureNumber}, #{manufacturer}, #{deviceStatus}, #{note})
     </insert>
 
     <update id="updateDeviceInfo">
         update device_info
         <set>
-            <if test="name != null">name = #{name}</if>
-            <if test="code != null">code = #{code}</if>
-            <if test="manufactureDate != null">manufacture_date = #{manufactureDate}</if>
-            <if test="manufactureNumber != null">manufacture_number = #{manufactureNumber}</if>
-            <if test="manufacturer != null">manufacturer = #{manufacturer}</if>
-            <if test="deviceStatus != null">device_status = #{deviceStatus}</if>
+            <if test="name != null">name = #{name},</if>
+            <if test="code != null">code = #{code},</if>
+            <if test="model != null">model = #{model},</if>
+            <if test="manufactureDate != null">manufacture_date = #{manufactureDate},</if>
+            <if test="manufactureNumber != null">manufacture_number = #{manufactureNumber},</if>
+            <if test="manufacturer != null">manufacturer = #{manufacturer},</if>
+            <if test="deviceStatus != null">device_status = #{deviceStatus},</if>
+            <if test="note != null">note = #{note},</if>
         </set>
         where id = #{id}
     </update>
@@ -43,6 +47,32 @@
     <delete id="deleteDeviceInfo">
         delete from device_info where id = #{id}
     </delete>
-    
+
+    <select id="searchDevices" resultMap="deviceInfo">
+        SELECT * FROM device_info
+        <where>
+            <if test="name != null and name != ''">
+                AND name LIKE CONCAT('%', #{name}, '%')
+            </if>
+            <if test="code != null and code != ''">
+                AND code LIKE CONCAT('%', #{code}, '%')
+            </if>
+            <if test="model != null and model != ''">
+                AND model LIKE CONCAT('%', #{model}, '%')
+            </if>
+            <if test="startDate != null and endDate != null">
+                AND manufacture_date BETWEEN #{startDate} AND #{endDate}
+            </if>
+            <if test="manufactureNumber != null and manufactureNumber != ''">
+                AND manufacture_number LIKE CONCAT('%', #{manufactureNumber}, '%')
+            </if>
+            <if test="manufacturer != null and manufacturer != ''">
+                AND manufacturer LIKE CONCAT('%', #{manufacturer}, '%')
+            </if>
+            <if test="status != null and status != ''">
+                AND device_status = #{status}
+            </if>
+        </where>
+    </select>
 
 </mapper>

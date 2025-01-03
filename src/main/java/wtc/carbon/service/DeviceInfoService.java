@@ -3,6 +3,8 @@ package wtc.carbon.service;
 
 import wtc.carbon.entity.DeviceInfo;
 
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 public interface DeviceInfoService {
@@ -17,4 +19,5 @@ public interface DeviceInfoService {
 
     boolean deleteDeviceInfoById(Integer id);
 
+    List<DeviceInfo> searchDevices(String name, String code, String model, LocalDate startDate, LocalDate endDate, String batchNumber, String manufacturer, String status);
 }

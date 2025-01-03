@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.AllArgsConstructor;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Data
@@ -14,10 +15,12 @@ public class DeviceInfo {
     private Integer id;
     private String name;
     private String code;
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-    private LocalDateTime manufactureDate;
+    private String model;
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    private LocalDate manufactureDate;
     private String manufactureNumber;
     private String manufacturer;
     private String deviceStatus;
+    private String note;
 }
 
